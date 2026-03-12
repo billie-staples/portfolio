@@ -829,9 +829,9 @@ function MusicPlayer() {
   const [playing, setPlaying] = useState(false)
   const [current, setCurrent] = useState(0)
   const [duration, setDuration] = useState(0)
-  const [src, setSrc] = useState('')
-  const [title, setTitle] = useState('No track loaded')
-  const [artist, setArtist] = useState('Upload a song to begin')
+  const [src, setSrc] = useState('Willow_Smith_-_Female_Energy_Music_Video.mp3')
+  const [title, setTitle] = useState('Female Energy')
+  const [artist, setArtist] = useState('Willow Smith')
   const audioRef = useRef(null)
 
   useEffect(() => {
@@ -1037,21 +1037,14 @@ export default function Portfolio() {
             <h2 className="about-heading">
               A writer of <em>words</em> that linger
             </h2>
-            <p className="about-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim
-              ad minim veniam, quis nostrud exercitation.
-            </p>
+            <p className="about-text">Bio.</p>
           </div>
           <div className="piece piece-tag reveal">
             <p className="about-label">Based in</p>
-            <p className="piece-tag-inner">
-              Aotearoa, New Zealand &mdash; available worldwide
-            </p>
+            <p className="piece-tag-inner">Aotearoa, New Zealand &mdash;</p>
           </div>
           <div className="piece piece-quote reveal">
-            <p className="piece-quote-text">
-              Words are the most powerful thing a person can wield.
-            </p>
+            <p className="piece-quote-text">"Quote of text or review"</p>
           </div>
         </div>
       </section>
