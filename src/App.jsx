@@ -682,27 +682,27 @@ section { position: relative; z-index: 1; }
 const WORKS = [
   {
     id: 'wc1',
-    cat: 'Category',
-    title: 'Project Title One',
-    desc: 'A brief description of this work. Replace with your own text.',
+    cat: 'Theatre',
+    title: 'When the world was wide',
+    desc: 'Description / review.',
   },
   {
     id: 'wc2',
-    cat: 'Category',
-    title: 'Project Title Two',
-    desc: 'A brief description of this work. Replace with your own text.',
+    cat: 'Theatre',
+    title: 'Pig Pig Pig, consent none of that please',
+    desc: 'Description / review.',
   },
   {
     id: 'wc3',
-    cat: 'Category',
-    title: 'Project Title Three',
-    desc: 'A brief description of this work. Replace with your own text.',
+    cat: 'Theatre',
+    title: 'Bravado',
+    desc: 'Description / review.',
   },
   {
     id: 'wc4',
-    cat: 'Category',
-    title: 'Project Title Four',
-    desc: 'A brief description of this work. Replace with your own text.',
+    cat: 'Theatre',
+    title: 'You First',
+    desc: 'Description / review.',
   },
 ]
 
