@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from "react";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
@@ -26,6 +26,17 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* BACKGROUND BLOBS */
@@ -97,7 +108,7 @@ body {
 }
 .nav-links a:hover { color: var(--text); }
 
-section { position: relative; z-index: 1; }
+section { position: relative; z-index: 1; width: 100%; display: flex; flex-direction: column; align-items: center; }
 
 /* HERO + COLLAGE combined */
 .hero {
@@ -110,6 +121,7 @@ section { position: relative; z-index: 1; }
   text-align: center;
   position: relative;
   overflow: visible;
+  width: 100%;
 }
 
 /* name + tag centred */
@@ -119,7 +131,11 @@ section { position: relative; z-index: 1; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 3rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
 }
 
 .pill {
@@ -134,7 +150,8 @@ section { position: relative; z-index: 1; }
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 1.4rem;
+  margin: 0 auto 1.4rem auto;
+  align-self: center;
 }
 .pill-dot {
   width: 6px; height: 6px;
@@ -167,6 +184,17 @@ section { position: relative; z-index: 1; }
 }
 @keyframes iris { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 
+.hero-bio {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+}
 .hero-btns {
   display: flex;
   gap: 1rem;
@@ -213,6 +241,8 @@ section { position: relative; z-index: 1; }
   height: 420px;
   margin: 0 auto;
   z-index: 1;
+  left: 0;
+  right: 0;
 }
 
 .piece {
@@ -244,8 +274,9 @@ section { position: relative; z-index: 1; }
 .piece-morph {
   width: 160px;
   height: 160px;
-  top: 180px;
-  left: 40px;
+  top: 80px;
+  right: 40px;
+  left: auto;
   z-index: 4;
   transform: rotate(3deg);
   border-radius: 999px;
@@ -254,6 +285,7 @@ section { position: relative; z-index: 1; }
   border: none;
   background: none;
   box-shadow: 0 12px 40px rgba(200,220,255,0.18);
+  position: absolute;
 }
 .piece-morph:hover { transform: rotate(0deg) scale(1.06) !important; }
 
@@ -341,6 +373,7 @@ section { position: relative; z-index: 1; }
 .works-section {
   padding: 5rem 2rem 5rem;
   max-width: 860px;
+  width: 100%;
   margin: 0 auto;
 }
 .works-head {
@@ -434,6 +467,7 @@ section { position: relative; z-index: 1; }
 .player-wrap {
   padding: 0 2rem 4rem;
   max-width: 640px;
+  width: 100%;
   margin: 0 auto;
 }
 .player {
@@ -544,6 +578,7 @@ section { position: relative; z-index: 1; }
 .contact {
   padding: 2rem 2rem 6rem;
   max-width: 580px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -677,182 +712,132 @@ section { position: relative; z-index: 1; }
   0%,100% { opacity: 0.9; transform: scale(1); }
   50%      { opacity: 0.12; transform: scale(0.4); }
 }
-`
+`;
 
 const WORKS = [
-  {
-    id: 'wc1',
-    cat: 'Theatre',
-    title: 'When the world was wide',
-    desc: 'Description / review.',
-  },
-  {
-    id: 'wc2',
-    cat: 'Theatre',
-    title: 'Pig Pig Pig, consent none of that please',
-    desc: 'Description / review.',
-  },
-  {
-    id: 'wc3',
-    cat: 'Theatre',
-    title: 'Bravado',
-    desc: 'Description / review.',
-  },
-  {
-    id: 'wc4',
-    cat: 'Theatre',
-    title: 'You First',
-    desc: 'Description / review.',
-  },
-]
+  { id: "wc1", cat: "Category", title: "Project Title One",   desc: "A brief description of this work. Replace with your own text." },
+  { id: "wc2", cat: "Category", title: "Project Title Two",   desc: "A brief description of this work. Replace with your own text." },
+  { id: "wc3", cat: "Category", title: "Project Title Three", desc: "A brief description of this work. Replace with your own text." },
+  { id: "wc4", cat: "Category", title: "Project Title Four",  desc: "A brief description of this work. Replace with your own text." },
+];
 
 function fmtTime(s) {
-  if (!isFinite(s)) return '0:00'
-  const m = Math.floor(s / 60)
-  const sec = Math.floor(s % 60)
-  return m + ':' + (sec < 10 ? '0' : '') + sec
+  if (!isFinite(s)) return "0:00";
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ":" + (sec < 10 ? "0" : "") + sec;
 }
 
 const STAR_CONFIGS = Array.from({ length: 90 }, (_, i) => {
-  const size = Math.random() < 0.1 ? 3 : Math.random() < 0.35 ? 2 : 1
-  const color = ['#ffffff', '#c8deff', '#e8d8ff', '#b8f0e8', '#fff0c0'][
-    Math.floor(Math.random() * 5)
-  ]
+  const size  = Math.random() < 0.1 ? 3 : Math.random() < 0.35 ? 2 : 1;
+  const color = ["#ffffff","#c8deff","#e8d8ff","#b8f0e8","#fff0c0"][Math.floor(Math.random()*5)];
   return {
     id: i,
-    top: (Math.random() * 100).toFixed(2) + '%',
-    left: (Math.random() * 100).toFixed(2) + '%',
+    top:  (Math.random() * 100).toFixed(2) + "%",
+    left: (Math.random() * 100).toFixed(2) + "%",
     size,
     color,
-    dur: (2.5 + Math.random() * 4).toFixed(1) + 's',
-    delay: (Math.random() * 4).toFixed(1) + 's',
+    dur:   (2.5 + Math.random() * 4).toFixed(1) + "s",
+    delay: (Math.random() * 4).toFixed(1) + "s",
     revealDelay: Math.random() * 1000,
-  }
-})
+  };
+});
 
 function StarField({ sectionRef }) {
-  const [born, setBorn] = useState([])
+  const [born, setBorn] = useState([]);
   useEffect(() => {
-    const el = sectionRef?.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          STAR_CONFIGS.forEach((s) =>
-            setTimeout(() => setBorn((prev) => [...prev, s.id]), s.revealDelay)
-          )
-          obs.disconnect()
-        }
-      },
-      { threshold: 0.05 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [sectionRef])
+    const el = sectionRef?.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        STAR_CONFIGS.forEach(s => setTimeout(() => setBorn(prev => [...prev, s.id]), s.revealDelay));
+        obs.disconnect();
+      }
+    }, { threshold: 0.05 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [sectionRef]);
   return (
     <div className="star-field" aria-hidden="true">
-      {STAR_CONFIGS.map((s) => (
-        <div
-          key={s.id}
-          className={'star' + (born.includes(s.id) ? ' born twinkle' : '')}
+      {STAR_CONFIGS.map(s => (
+        <div key={s.id}
+          className={"star" + (born.includes(s.id) ? " born twinkle" : "")}
           style={{
-            top: s.top,
-            left: s.left,
-            width: s.size + 'px',
-            height: s.size + 'px',
+            top: s.top, left: s.left,
+            width: s.size + "px", height: s.size + "px",
             background: s.color,
-            boxShadow:
-              s.size >= 2 ? '0 0 ' + s.size * 3 + 'px ' + s.color : 'none',
-            '--dur': s.dur,
-            '--delay': s.delay,
+            boxShadow: s.size >= 2 ? "0 0 " + (s.size * 3) + "px " + s.color : "none",
+            "--dur": s.dur, "--delay": s.delay,
           }}
         />
       ))}
     </div>
-  )
+  );
 }
 
 function SectionStars() {
-  const ref = useRef(null)
+  const ref = useRef(null);
   return (
-    <div
-      ref={ref}
-      style={{
-        position: 'absolute',
-        inset: 0,
-        pointerEvents: 'none',
-        zIndex: 0,
-        overflow: 'hidden',
-      }}
-    >
+    <div ref={ref} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
       <StarField sectionRef={ref} />
     </div>
-  )
+  );
 }
 
 function MusicPlayer() {
-  const [playing, setPlaying] = useState(false)
-  const [current, setCurrent] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [src, setSrc] = useState('')
-  const [title, setTitle] = useState('No track loaded')
-  const [artist, setArtist] = useState('Upload a song to begin')
-  const audioRef = useRef(null)
+  const [playing, setPlaying] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [src, setSrc] = useState("");
+  const [title, setTitle] = useState("No track loaded");
+  const [artist, setArtist] = useState("Upload a song to begin");
+  const audioRef = useRef(null);
 
   useEffect(() => {
-    const a = audioRef.current
-    if (!a) return
-    const onTime = () => setCurrent(a.currentTime)
-    const onLoad = () => setDuration(a.duration)
-    const onEnd = () => setPlaying(false)
-    a.addEventListener('timeupdate', onTime)
-    a.addEventListener('loadedmetadata', onLoad)
-    a.addEventListener('ended', onEnd)
+    const a = audioRef.current;
+    if (!a) return;
+    const onTime = () => setCurrent(a.currentTime);
+    const onLoad = () => setDuration(a.duration);
+    const onEnd  = () => setPlaying(false);
+    a.addEventListener("timeupdate", onTime);
+    a.addEventListener("loadedmetadata", onLoad);
+    a.addEventListener("ended", onEnd);
     return () => {
-      a.removeEventListener('timeupdate', onTime)
-      a.removeEventListener('loadedmetadata', onLoad)
-      a.removeEventListener('ended', onEnd)
-    }
-  }, [src])
+      a.removeEventListener("timeupdate", onTime);
+      a.removeEventListener("loadedmetadata", onLoad);
+      a.removeEventListener("ended", onEnd);
+    };
+  }, [src]);
 
-  const handleFile = (e) => {
-    const file = e.target.files[0]
-    if (!file) return
-    setSrc(URL.createObjectURL(file))
-    setTitle(file.name.replace(/\.[^.]+$/, ''))
-    setArtist('Your Upload')
-    setCurrent(0)
-    setPlaying(false)
-    setTimeout(() => audioRef.current.load(), 50)
-  }
+  const handleFile = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setSrc(URL.createObjectURL(file));
+    setTitle(file.name.replace(/\.[^.]+$/, ""));
+    setArtist("Your Upload");
+    setCurrent(0);
+    setPlaying(false);
+    setTimeout(() => audioRef.current.load(), 50);
+  };
 
   const togglePlay = () => {
-    if (!src) return
-    if (playing) {
-      audioRef.current.pause()
-      setPlaying(false)
-    } else {
-      audioRef.current.play()
-      setPlaying(true)
-    }
-  }
+    if (!src) return;
+    if (playing) { audioRef.current.pause(); setPlaying(false); }
+    else         { audioRef.current.play();  setPlaying(true);  }
+  };
 
-  const skip = (secs) => {
-    if (!src) return
-    audioRef.current.currentTime = Math.max(
-      0,
-      Math.min(duration, audioRef.current.currentTime + secs)
-    )
-  }
+  const skip = secs => {
+    if (!src) return;
+    audioRef.current.currentTime = Math.max(0, Math.min(duration, audioRef.current.currentTime + secs));
+  };
 
-  const seek = (e) => {
-    if (!src || !duration) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    audioRef.current.currentTime =
-      ((e.clientX - rect.left) / rect.width) * duration
-  }
+  const seek = e => {
+    if (!src || !duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    audioRef.current.currentTime = ((e.clientX - rect.left) / rect.width) * duration;
+  };
 
-  const pct = duration ? (current / duration) * 100 : 0
+  const pct = duration ? (current / duration) * 100 : 0;
 
   return (
     <div className="player-wrap">
@@ -865,25 +850,17 @@ function MusicPlayer() {
             <div className="player-artist">{artist}</div>
           </div>
           <div className="player-controls">
-            <button className="ctrl-btn" onClick={() => skip(-10)}>
-              &#10226;
-            </button>
-            <button className="ctrl-btn play" onClick={togglePlay}>
-              {playing ? '||' : '>'}
-            </button>
-            <button className="ctrl-btn" onClick={() => skip(10)}>
-              &#10227;
-            </button>
+            <button className="ctrl-btn" onClick={() => skip(-10)}>&#10226;</button>
+            <button className="ctrl-btn play" onClick={togglePlay}>{playing ? "||" : ">"}</button>
+            <button className="ctrl-btn" onClick={() => skip(10)}>&#10227;</button>
           </div>
         </div>
         <div className="player-progress">
           <span className="prog-time">{fmtTime(current)}</span>
           <div className="prog-track" onClick={seek}>
-            <div className="prog-fill" style={{ width: pct + '%' }} />
+            <div className="prog-fill" style={{ width: pct + "%" }} />
           </div>
-          <span className="prog-time" style={{ textAlign: 'right' }}>
-            {fmtTime(duration)}
-          </span>
+          <span className="prog-time" style={{ textAlign: "right" }}>{fmtTime(duration)}</span>
         </div>
         <div className="player-upload">
           <label className="upload-btn">
@@ -895,31 +872,28 @@ function MusicPlayer() {
         <audio ref={audioRef} src={src} />
       </div>
     </div>
-  )
+  );
 }
 
 function useReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll('.reveal')
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e, i) => {
-          if (e.isIntersecting) {
-            setTimeout(() => e.target.classList.add('on'), i * 80)
-            obs.unobserve(e.target)
-          }
-        })
-      },
-      { threshold: 0.08 }
-    )
-    els.forEach((el) => obs.observe(el))
-    return () => obs.disconnect()
-  }, [])
+    const els = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add("on"), i * 80);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    els.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
 }
 
 function WorkCard({ id, cat, title, desc }) {
   return (
-    <div className={'work-piece ' + id}>
+    <div className={"work-piece " + id}>
       <div className="work-thumb">
         <div className="work-thumb-inner">
           <div className="work-orb wo-a" />
@@ -932,39 +906,31 @@ function WorkCard({ id, cat, title, desc }) {
         <p className="work-desc">{desc}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default function Portfolio() {
-  useReveal()
-  const heroRef = useRef(null)
-  const worksRef = useRef(null)
-  const contactRef = useRef(null)
+  useReveal();
+  const heroRef  = useRef(null);
+  const worksRef = useRef(null);
+  const contactRef = useRef(null);
 
   return (
     <>
       <style>{CSS}</style>
 
       <div className="bg">
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
-        <div className="blob blob-3" />
-        <div className="blob blob-4" />
+        <div className="blob blob-1" /><div className="blob blob-2" />
+        <div className="blob blob-3" /><div className="blob blob-4" />
         <div className="blob blob-5" />
       </div>
 
       {/* NAV */}
       <nav className="nav">
-        <a href="#home" className="nav-logo">
-          B<span>S</span>
-        </a>
+        <a href="#home" className="nav-logo">B<span>S</span></a>
         <ul className="nav-links">
-          <li>
-            <a href="#works">Works</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
+          <li><a href="#works">Works</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -972,20 +938,20 @@ export default function Portfolio() {
       <section className="hero" id="home" ref={heroRef}>
         <SectionStars />
 
+        {/* orb - top right corner of hero */}
+        <div className="piece piece-morph">
+          <div className="morph-shape" />
+        </div>
+
         {/* centred name block */}
         <div className="hero-top reveal">
-          <div className="pill">
-            <span className="pill-dot" /> Available for projects
-          </div>
+          <div className="pill"><span className="pill-dot" /> Available for projects</div>
           <p className="hero-tag">Writer &amp; Storyteller</p>
           <h1 className="hero-name">B S</h1>
+          <p className="hero-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <div className="hero-btns">
-            <a href="#works" className="btn-main">
-              View Works
-            </a>
-            <a href="#contact" className="btn-ghost">
-              Get in touch
-            </a>
+            <a href="#works" className="btn-main">View Works</a>
+            <a href="#contact" className="btn-ghost">Get in touch</a>
           </div>
         </div>
 
@@ -993,53 +959,28 @@ export default function Portfolio() {
         <div className="collage-board">
           <div className="piece piece-bio reveal">
             <p className="about-label">About</p>
-            <h2 className="about-heading">
-              A writer of <em>words</em> that linger
-            </h2>
-            <p className="about-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim
-              ad minim veniam, quis nostrud exercitation.
-            </p>
-          </div>
-          <div className="piece piece-morph">
-            <div className="morph-shape" />
+            <h2 className="about-heading">A writer of <em>words</em> that linger</h2>
+            <p className="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation.</p>
           </div>
           <div className="piece piece-tag reveal">
             <p className="about-label">Based in</p>
-            <p className="piece-tag-inner">
-              New Zealand &mdash; available worldwide
-            </p>
+            <p className="piece-tag-inner">New Zealand &mdash; available worldwide</p>
           </div>
           <div className="piece piece-quote reveal">
-            <p className="piece-quote-text">
-              Words are the most powerful thing a person can wield.
-            </p>
+            <p className="piece-quote-text">Words are the most powerful thing a person can wield.</p>
           </div>
         </div>
       </section>
 
       {/* WORKS */}
-      <section
-        className="works-section"
-        id="works"
-        ref={worksRef}
-        style={{ position: 'relative' }}
-      >
+      <section className="works-section" id="works" ref={worksRef} style={{ position: "relative" }}>
         <SectionStars />
-        <div
-          className="works-head reveal"
-          style={{ position: 'relative', zIndex: 1 }}
-        >
+        <div className="works-head reveal" style={{ position: "relative", zIndex: 1 }}>
           <p className="works-label">Selected Works</p>
           <h2 className="works-title">Stories &amp; Projects</h2>
         </div>
-        <div
-          className="works-collage"
-          style={{ position: 'relative', zIndex: 1 }}
-        >
-          {WORKS.map((w) => (
-            <WorkCard key={w.id} {...w} />
-          ))}
+        <div className="works-collage" style={{ position: "relative", zIndex: 1 }}>
+          {WORKS.map(w => <WorkCard key={w.id} {...w} />)}
         </div>
       </section>
 
@@ -1047,62 +988,24 @@ export default function Portfolio() {
       <MusicPlayer />
 
       {/* CONTACT */}
-      <section
-        className="contact"
-        id="contact"
-        ref={contactRef}
-        style={{ position: 'relative' }}
-      >
+      <section className="contact" id="contact" ref={contactRef} style={{ position: "relative" }}>
         <SectionStars />
-        <p
-          className="contact-label reveal"
-          style={{ position: 'relative', zIndex: 1 }}
-        >
-          Get in touch
-        </p>
-        <div
-          className="contact-divider reveal"
-          style={{ position: 'relative', zIndex: 1 }}
-        />
-        <h2
-          className="contact-heading reveal"
-          style={{ position: 'relative', zIndex: 1 }}
-        >
+        <p className="contact-label reveal" style={{ position: "relative", zIndex: 1 }}>Get in touch</p>
+        <div className="contact-divider reveal" style={{ position: "relative", zIndex: 1 }} />
+        <h2 className="contact-heading reveal" style={{ position: "relative", zIndex: 1 }}>
           Let&rsquo;s create something <em>beautiful</em>
         </h2>
-        <p
-          className="contact-sub reveal"
-          style={{ position: 'relative', zIndex: 1 }}
-        >
-          Whether you have a project in mind or simply want to connect, I would
-          love to hear from you.
+        <p className="contact-sub reveal" style={{ position: "relative", zIndex: 1 }}>
+          Whether you have a project in mind or simply want to connect, I would love to hear from you.
         </p>
-        <form
-          className="form reveal"
-          style={{ position: 'relative', zIndex: 1 }}
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="form reveal" style={{ position: "relative", zIndex: 1 }} onSubmit={e => e.preventDefault()}>
           <div className="form-row">
-            <div className="form-field">
-              <label>Name</label>
-              <input type="text" placeholder="Your name" />
-            </div>
-            <div className="form-field">
-              <label>Email</label>
-              <input type="email" placeholder="your@email.com" />
-            </div>
+            <div className="form-field"><label>Name</label><input type="text" placeholder="Your name" /></div>
+            <div className="form-field"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
           </div>
-          <div className="form-field">
-            <label>Subject</label>
-            <input type="text" placeholder="What is this about?" />
-          </div>
-          <div className="form-field">
-            <label>Message</label>
-            <textarea placeholder="Tell me about your project or idea..." />
-          </div>
-          <button type="submit" className="form-btn">
-            Send Message
-          </button>
+          <div className="form-field"><label>Subject</label><input type="text" placeholder="What is this about?" /></div>
+          <div className="form-field"><label>Message</label><textarea placeholder="Tell me about your project or idea..." /></div>
+          <button type="submit" className="form-btn">Send Message</button>
         </form>
       </section>
 
@@ -1112,5 +1015,5 @@ export default function Portfolio() {
         <span className="footer-copy">&copy; 2026. All rights reserved.</span>
       </footer>
     </>
-  )
+  );
 }
