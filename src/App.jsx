@@ -180,9 +180,17 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iris 8s ease infinite;
+  animation: iris 8s ease infinite, hero-breathe 6s ease-in-out infinite, hero-fadein 2s ease forwards;
+  opacity: 0;
 }
-@keyframes iris { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+@keyframes hero-fadein {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-breathe {
+  0%,100% { letter-spacing: -0.02em; text-shadow: 0 0 40px rgba(200,220,255,0); }
+  50%     { letter-spacing: 0.01em;  text-shadow: 0 0 80px rgba(200,220,255,0.15); }
+} 
 
 .hero-bio {
   font-family: 'Cormorant Garamond', serif;
