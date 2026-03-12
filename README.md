@@ -1,16 +1,51 @@
-# React + Vite
+A personal portfolio website for a writer and storyteller. Built with React and Vite, featuring a dark moon/night sky aesthetic, iridescent colour palette, collage-style layout, scroll-triggered star animations, and a built-in music player.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Customisation Guide](#customisation-guide)
+- [Music Player](#music-player)
+- [Deployment](#deployment)
+- [Roadmap](#roadmap)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Overview
 
-## Expanding the ESLint configuration
+This portfolio is a single-page React application designed to showcase written works and invite collaboration. The design language draws on themes of night, moonlight, and quiet creativity — using deep navy backgrounds, iridescent gradients, glassmorphism cards, and a starfield that animates as you scroll.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Features
+
+- **Hero section** — large iridescent name display, tagline, bio, and call-to-action buttons
+- **Collage cards** — floating glassmorphism pieces including an about card, location tag, and quote, arranged around the hero
+- **Morphing orb** — an animated iridescent shape in the top right corner of the hero
+- **Works grid** — 2x2 collage-style project cards, each slightly tilted, that straighten on hover
+- **Music player** — upload and play MP3, WAV, or AAC files with play/pause, skip ±10s, and a seek bar. Supports a default preloaded track.
+- **Contact form** — name, email, subject, and message fields
+- **Star system** — 90 stars per section that fade in with staggered delays as each section scrolls into view, each twinkling on its own rhythm
+- **Animated background blobs** — soft drifting radial gradients behind all content
+- **Fully centred responsive layout**
+
+---
+
+## Tech Stack
+
+| Tool | Purpose |
+|------|---------|
+| [React](https://react.dev/) | UI framework |
+| [Vite](https://vitejs.dev/) | Build tool and dev server |
+| [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond) | Display / heading font |
+| [Jost](https://fonts.google.com/specimen/Jost) | Body font |
+| CSS-in-JS (template literal) | All styles live inside `App.jsx` |
+
+No external component libraries or CSS frameworks are used. Everything is hand-written in a single file.
+
+---
