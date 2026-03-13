@@ -763,7 +763,7 @@ function fmtTime(s) {
   return m + ':' + (sec < 10 ? '0' : '') + sec
 }
 
-const STAR_CONFIGS = Array.from({ length: 250 }, (_, i) => {
+const STAR_CONFIGS = Array.from({ length: 450 }, (_, i) => {
   const size = Math.random() < 0.1 ? 3 : Math.random() < 0.35 ? 2 : 1
   const color = ['#ffffff', '#c8deff', '#e8d8ff', '#b8f0e8', '#fff0c0'][
     Math.floor(Math.random() * 5)
