@@ -385,14 +385,14 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 
 /* WORKS */
 .works-section {
-  padding: 3rem 2rem 3rem;
+  padding: 2rem 2rem 2rem;
   max-width: 860px;
   width: 100%;
   margin: 0 auto;
 }
 .works-head {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
 }
 .works-label {
   font-size: 0.62rem;
