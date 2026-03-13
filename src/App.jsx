@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@300;400;500&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -77,7 +77,7 @@ body {
   border-bottom: none;
 }
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.4rem;
   font-weight: 300;
   letter-spacing: 0.08em;
@@ -224,7 +224,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   color: #080c18;
   border: none;
   border-radius: 999px;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.16em;
