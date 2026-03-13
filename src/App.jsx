@@ -1006,7 +1006,7 @@ export default function Portfolio() {
       {/* NAV */}
       <nav className="nav">
         <a href="#home" className="nav-logo">
-          B<span>S</span>
+          B<span>L</span>S
         </a>
         <ul className="nav-links">
           <li>
@@ -1034,7 +1034,7 @@ export default function Portfolio() {
             <div className="pill">
               <span className="pill-dot" /> Available for projects
             </div>
-            <p className="hero-tag">Writer &amp;</p>
+            <p className="hero-tag">Writer</p>
             <h1 className="hero-name">Billie Staples</h1>
             <p className="hero-bio">Bio, bio, bio</p>
             <div className="hero-btns">
@@ -1042,7 +1042,7 @@ export default function Portfolio() {
                 View Works
               </a>
               <a href="#contact" className="btn-ghost">
-                Get in touch
+                Connect with me
               </a>
             </div>
           </div>
