@@ -72,10 +72,9 @@ body {
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  padding: 1.2rem 2rem;
-  background: rgba(8,12,24,0.85);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
+  padding: 1.4rem 2rem;
+  background: transparent;
+  border-bottom: none;
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
@@ -83,15 +82,14 @@ body {
   font-weight: 300;
   letter-spacing: 0.08em;
   text-decoration: none;
-  color: var(--text);
-}
-.nav-logo span {
-  font-style: italic;
   background: linear-gradient(135deg, var(--i1), var(--i2), var(--i3));
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: iris 8s ease infinite;
 }
+.nav-logo span { font-style: italic; }
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -102,11 +100,15 @@ body {
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
   text-decoration: none;
-  transition: color 0.2s;
+  background: linear-gradient(135deg, var(--i1), var(--i3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.65;
+  transition: opacity 0.2s;
 }
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { opacity: 1; }
 
 section { position: relative; z-index: 1; width: 100%; display: flex; flex-direction: column; align-items: center; }
 
@@ -124,6 +126,20 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   width: 100%;
 }
 
+/* two column inner layout */
+.hero-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
 /* name + tag centred */
 .hero-top {
   position: relative;
@@ -133,8 +149,8 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 700px;
-  margin: 0 auto 3rem auto;
+  max-width: 420px;
+  flex-shrink: 0;
   text-align: center;
 }
 
@@ -171,7 +187,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .hero-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(5rem, 13vw, 10rem);
-  font-weight: 100;
+  font-weight: 300;
   line-height: 0.9;
   letter-spacing: -0.02em;
   margin-bottom: 1.4rem;
@@ -180,17 +196,9 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iris 8s ease infinite, hero-breathe 6s ease-in-out infinite, hero-fadein 2s ease forwards;
-  opacity: 0;
+  animation: iris 8s ease infinite;
 }
-@keyframes hero-fadein {
-  0%   { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-@keyframes hero-breathe {
-  0%,100% { letter-spacing: -0.02em; text-shadow: 0 0 40px rgba(200,220,255,0); }
-  50%     { letter-spacing: 0.01em;  text-shadow: 0 0 80px rgba(200,220,255,0.15); }
-} 
+@keyframes iris { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 
 .hero-bio {
   font-family: 'Cormorant Garamond', serif;
@@ -241,16 +249,14 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 }
 .btn-ghost:hover { color: var(--text); border-color: var(--i1); }
 
-/* COLLAGE BOARD - floating pieces around the name */
+/* COLLAGE BOARD - right column beside hero name */
 .collage-board {
   position: relative;
   width: 100%;
-  max-width: 900px;
-  height: 420px;
-  margin: 0 auto;
+  max-width: 480px;
+  height: 300px;
+  flex-shrink: 0;
   z-index: 1;
-  left: 0;
-  right: 0;
 }
 
 .piece {
@@ -269,20 +275,20 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   box-shadow: 0 20px 60px rgba(200,220,255,0.14);
 }
 
-/* piece positions - scattered around centre */
+/* piece positions - right column layout */
 .piece-bio {
-  width: 260px;
-  top: 20px;
+  width: 220px;
+  top: 0px;
   left: 0;
   z-index: 3;
-  transform: rotate(-2deg);
+  transform: rotate(-1.5deg);
 }
 .piece-bio:hover { transform: rotate(0deg) translateY(-4px) !important; }
 
 .piece-morph {
-  width: 100px;
-  height: 100px;
-  top: 60px;
+  width: 160px;
+  height: 160px;
+  top: 80px;
   right: 40px;
   left: auto;
   z-index: 4;
@@ -298,8 +304,8 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .piece-morph:hover { transform: rotate(0deg) scale(1.06) !important; }
 
 .piece-tag {
-  width: 180px;
-  top: 10px;
+  width: 160px;
+  top: 0;
   right: 0;
   z-index: 2;
   transform: rotate(2deg);
@@ -308,9 +314,9 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .piece-tag:hover { transform: rotate(0deg) translateY(-4px) !important; }
 
 .piece-quote {
-  width: 220px;
-  bottom: 0;
-  right: 20px;
+  width: 200px;
+  bottom: 0px;
+  right: 0px;
   z-index: 5;
   transform: rotate(-1.5deg);
 }
@@ -379,7 +385,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 
 /* WORKS */
 .works-section {
-  padding: 5rem 2rem 5rem;
+  padding: 3rem 2rem 3rem;
   max-width: 860px;
   width: 100%;
   margin: 0 auto;
@@ -405,13 +411,13 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .works-collage {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
+  gap: 0.8rem;
   padding: 0.5rem;
 }
 .work-piece {
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
-  border-radius: 24px;
+  border-radius: 18px;
   overflow: hidden;
   backdrop-filter: blur(16px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -429,7 +435,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 }
 
 .work-thumb {
-  height: 170px;
+  height: 90px;
   position: relative;
   overflow: hidden;
 }
@@ -720,31 +726,32 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   0%,100% { opacity: 0.9; transform: scale(1); }
   50%      { opacity: 0.12; transform: scale(0.4); }
 }
+
 `
 
 const WORKS = [
   {
     id: 'wc1',
-    cat: 'Theatre',
-    title: 'Bravado',
+    cat: 'Category',
+    title: 'Project Title One',
     desc: 'A brief description of this work. Replace with your own text.',
   },
   {
     id: 'wc2',
-    cat: 'Theatre',
-    title: 'When the world was wide',
+    cat: 'Category',
+    title: 'Project Title Two',
     desc: 'A brief description of this work. Replace with your own text.',
   },
   {
     id: 'wc3',
-    cat: 'Theatre',
-    title: 'Pig, pig, pig (consent) None of that please',
+    cat: 'Category',
+    title: 'Project Title Three',
     desc: 'A brief description of this work. Replace with your own text.',
   },
   {
     id: 'wc4',
-    cat: 'Theatre',
-    title: 'You First',
+    cat: 'Category',
+    title: 'Project Title Four',
     desc: 'A brief description of this work. Replace with your own text.',
   },
 ]
@@ -756,7 +763,7 @@ function fmtTime(s) {
   return m + ':' + (sec < 10 ? '0' : '') + sec
 }
 
-const STAR_CONFIGS = Array.from({ length: 500 }, (_, i) => {
+const STAR_CONFIGS = Array.from({ length: 250 }, (_, i) => {
   const size = Math.random() < 0.1 ? 3 : Math.random() < 0.35 ? 2 : 1
   const color = ['#ffffff', '#c8deff', '#e8d8ff', '#b8f0e8', '#fff0c0'][
     Math.floor(Math.random() * 5)
@@ -1020,39 +1027,49 @@ export default function Portfolio() {
           <div className="morph-shape" />
         </div>
 
-        {/* centred name block */}
-        <div className="hero-top reveal">
-          <div className="pill">
-            <span className="pill-dot" /> Available for projects
+        {/* hero layout - name left, collage cards right */}
+        <div className="hero-inner">
+          {/* centred name block */}
+         
+            <p className="hero-tag">Writer &amp; Storyteller</p>
+            <h1 className="hero-name">Billie Staples</h1>
+            <p className="hero-bio">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <div className="hero-btns">
+              <a href="#works" className="btn-main">
+                View Works
+              </a>
+              <a href="#contact" className="btn-ghost">
+                Get in touch
+              </a>
+            </div>
           </div>
-          <p className="hero-tag">Writer &amp; Storyteller</p>
-          <h1 className="hero-name">Billie Staples</h1>
-          <p className="hero-bio">Bio</p>
-          <div className="hero-btns">
-            <a href="#works" className="btn-main">
-              View Works
-            </a>
-            <a href="#contact" className="btn-ghost">
-              Get in touch
-            </a>
-          </div>
-        </div>
 
-        {/* collage pieces floating below the name */}
-        <div className="collage-board">
-          <div className="piece piece-bio reveal">
-            <p className="about-label">About</p>
-            <h2 className="about-heading">
-              A writer of <em>words</em> that linger
-            </h2>
-            <p className="about-text">Bio.</p>
-          </div>
-          <div className="piece piece-tag reveal">
-            <p className="about-label">Based in</p>
-            <p className="piece-tag-inner">Aotearoa, New Zealand &mdash;</p>
-          </div>
-          <div className="piece piece-quote reveal">
-            <p className="piece-quote-text">"Quote of text or review"</p>
+          {/* collage pieces alongside the name */}
+          <div className="collage-board">
+            <div className="piece piece-bio reveal">
+              <p className="about-label">About</p>
+              <h2 className="about-heading">
+                A writer of <em>words</em> that linger
+              </h2>
+              <p className="about-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim
+                ad minim veniam, quis nostrud exercitation.
+              </p>
+            </div>
+            <div className="piece piece-tag reveal">
+              <p className="about-label">Based in</p>
+              <p className="piece-tag-inner">
+                New Zealand &mdash; available worldwide
+              </p>
+            </div>
+            <div className="piece piece-quote reveal">
+              <p className="piece-quote-text">
+                Words are the most powerful thing a person can wield.
+              </p>
+            </div>
           </div>
         </div>
       </section>
