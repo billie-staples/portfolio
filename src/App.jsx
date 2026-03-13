@@ -286,10 +286,10 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .piece-bio:hover { transform: rotate(0deg) translateY(-4px) !important; }
 
 .piece-morph {
-  width: 160px;
-  height: 160px;
-  top: 80px;
-  right: 40px;
+  width: 100px;
+  height: 100px;
+  top: 90px;
+  right: 60px;
   left: auto;
   z-index: 4;
   transform: rotate(3deg);
