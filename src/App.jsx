@@ -1137,20 +1137,27 @@ export default function Portfolio() {
           <div className="form-row">
             <div className="form-field">
               <label>Name</label>
-              <input type="text" placeholder="Your name" />
+              <input type="text" name="name" placeholder="Your name" />
             </div>
             <div className="form-field">
               <label>Email</label>
-              <input type="email" placeholder="your@gmail.com" />
+              <input type="email" name="email" placeholder="your@gmail.com" />
             </div>
           </div>
           <div className="form-field">
             <label>Subject</label>
-            <input type="text" placeholder="What is this about?" />
+            <input
+              type="text"
+              name="subject"
+              placeholder="What is this about?"
+            />
           </div>
           <div className="form-field">
             <label>Message</label>
-            <textarea placeholder="Tell me about your project or idea..." />
+            <textarea
+              name="message"
+              nameplaceholder="Tell me about your project or idea..."
+            />
           </div>
           <button type="submit" className="form-btn">
             Send Message
