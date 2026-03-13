@@ -1030,7 +1030,10 @@ export default function Portfolio() {
         {/* hero layout - name left, collage cards right */}
         <div className="hero-inner">
           {/* centred name block */}
-         
+          <div className="hero-top reveal">
+            <div className="pill">
+              <span className="pill-dot" /> Available for projects
+            </div>
             <p className="hero-tag">Writer &amp; Storyteller</p>
             <h1 className="hero-name">Billie Staples</h1>
             <p className="hero-bio">
