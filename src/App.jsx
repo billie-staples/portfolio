@@ -171,7 +171,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .hero-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(5rem, 13vw, 10rem);
-  font-weight: 300;
+  font-weight: 100;
   line-height: 0.9;
   letter-spacing: -0.02em;
   margin-bottom: 1.4rem;
@@ -280,9 +280,9 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .piece-bio:hover { transform: rotate(0deg) translateY(-4px) !important; }
 
 .piece-morph {
-  width: 160px;
-  height: 160px;
-  top: 80px;
+  width: 100px;
+  height: 100px;
+  top: 60px;
   right: 40px;
   left: auto;
   z-index: 4;
