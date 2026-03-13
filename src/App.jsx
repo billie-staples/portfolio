@@ -1131,7 +1131,8 @@ export default function Portfolio() {
         <form
           className="form reveal"
           style={{ position: 'relative', zIndex: 1 }}
-          onSubmit={(e) => e.preventDefault()}
+          action="https://formspree.io/f/mbdzypvo"
+          method="POST"
         >
           <div className="form-row">
             <div className="form-field">
