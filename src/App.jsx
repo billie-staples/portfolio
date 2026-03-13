@@ -732,27 +732,27 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 const WORKS = [
   {
     id: 'wc1',
-    cat: 'Category',
-    title: 'Project Title One',
-    desc: 'A brief description of this work. Replace with your own text.',
+    cat: 'Theatre',
+    title: 'Bravado',
+    desc: 'Description, quote, review.',
   },
   {
     id: 'wc2',
-    cat: 'Category',
-    title: 'Project Title Two',
-    desc: 'A brief description of this work. Replace with your own text.',
+    cat: 'Theatre',
+    title: 'When the world was wide',
+    desc: 'Description, quote, review',
   },
   {
     id: 'wc3',
-    cat: 'Category',
-    title: 'Project Title Three',
-    desc: 'A brief description of this work. Replace with your own text.',
+    cat: 'Theatre',
+    title: 'Pig, pig, pig (consent) none of that please',
+    desc: 'Description, quote, review',
   },
   {
     id: 'wc4',
-    cat: 'Category',
-    title: 'Project Title Four',
-    desc: 'A brief description of this work. Replace with your own text.',
+    cat: 'Theatre',
+    title: 'You First',
+    desc: 'Description, quote, review.',
   },
 ]
 
@@ -1034,12 +1034,9 @@ export default function Portfolio() {
             <div className="pill">
               <span className="pill-dot" /> Available for projects
             </div>
-            <p className="hero-tag">Writer &amp; Storyteller</p>
+            <p className="hero-tag">Writer &amp;</p>
             <h1 className="hero-name">Billie Staples</h1>
-            <p className="hero-bio">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <p className="hero-bio">Bio, bio, bio</p>
             <div className="hero-btns">
               <a href="#works" className="btn-main">
                 View Works
@@ -1057,21 +1054,16 @@ export default function Portfolio() {
               <h2 className="about-heading">
                 A writer of <em>words</em> that linger
               </h2>
-              <p className="about-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim
-                ad minim veniam, quis nostrud exercitation.
-              </p>
+              <p className="about-text">XXXX</p>
             </div>
             <div className="piece piece-tag reveal">
               <p className="about-label">Based in</p>
               <p className="piece-tag-inner">
-                New Zealand &mdash; available worldwide
+                Aotearoa, New Zealand &mdash; available worldwide
               </p>
             </div>
             <div className="piece piece-quote reveal">
-              <p className="piece-quote-text">
-                Words are the most powerful thing a person can wield.
-              </p>
+              <p className="piece-quote-text">"quote".</p>
             </div>
           </div>
         </div>
@@ -1148,7 +1140,7 @@ export default function Portfolio() {
             </div>
             <div className="form-field">
               <label>Email</label>
-              <input type="email" placeholder="your@email.com" />
+              <input type="email" placeholder="your@gmail.com" />
             </div>
           </div>
           <div className="form-field">
@@ -1167,7 +1159,7 @@ export default function Portfolio() {
 
       {/* FOOTER */}
       <footer className="footer">
-        <span className="footer-name">B S &mdash; Writer</span>
+        <span className="footer-name">Billie Staples &mdash; Writer</span>
         <span className="footer-copy">&copy; 2026. All rights reserved.</span>
       </footer>
     </>
