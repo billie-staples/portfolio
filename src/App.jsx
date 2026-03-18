@@ -20,7 +20,7 @@ const CSS = `
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Jost', sans-serif;
+  font-family: 'Nunito', sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
@@ -119,7 +119,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 7rem 2rem 4rem;
+  padding: 5rem 2rem 3rem;
   text-align: center;
   position: relative;
   overflow: visible;
@@ -136,6 +136,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 2rem;
   position: relative;
   z-index: 2;
 }
@@ -148,9 +149,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 420px;
-  flex-shrink: 0;
+  flex: 1;
   text-align: center;
 }
 
@@ -185,23 +184,32 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   margin-bottom: 0.8rem;
 }
 .hero-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(5rem, 13vw, 10rem);
-  font-weight: 300;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.4rem;
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.2rem;
   background: linear-gradient(135deg, var(--i1) 0%, var(--i3) 40%, var(--i2) 70%, var(--i5) 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iris 8s ease infinite;
+  animation: iris 8s ease infinite, hero-breathe 6s ease-in-out infinite, hero-fadein 2s ease forwards;
+  opacity: 0;
+}
+@keyframes hero-fadein {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-breathe {
+  0%,100% { letter-spacing: -0.01em; text-shadow: 0 0 40px rgba(200,220,255,0); }
+  50%     { letter-spacing: 0.01em;  text-shadow: 0 0 80px rgba(200,220,255,0.15); }
 }
 @keyframes iris { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 
 .hero-bio {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.2rem;
   font-style: italic;
   font-weight: 300;
@@ -249,49 +257,49 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 }
 .btn-ghost:hover { color: var(--text); border-color: var(--i1); }
 
-/* COLLAGE BOARD - right column beside hero name */
+/* COLLAGE BOARD - left column */
 .collage-board {
   position: relative;
-  width: 100%;
-  max-width: 480px;
-  height: 300px;
-  flex-shrink: 0;
+  flex: 1;
+  height: 420px;
   z-index: 1;
 }
 
 .piece {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(180,200,255,0.06);
+  backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 1.4rem;
   position: absolute;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
   cursor: default;
 }
 .piece:hover {
   z-index: 10 !important;
-  box-shadow: 0 20px 60px rgba(200,220,255,0.14);
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(180,200,255,0.12);
+  box-shadow: 0 12px 40px rgba(200,220,255,0.08);
 }
 
-/* piece positions - right column layout */
+/* piece positions - spread across left column */
 .piece-bio {
-  width: 220px;
-  top: 0px;
-  left: 0;
+  width: 200px;
+  top: 40px;
+  left: 10px;
   z-index: 3;
   transform: rotate(-1.5deg);
 }
 .piece-bio:hover { transform: rotate(0deg) translateY(-4px) !important; }
 
 .piece-morph {
-  width: 100px;
-  height: 100px;
-  top: 90px;
-  right: 60px;
+  width: 80px;
+  height: 80px;
+  top: -30px;
+  right: -20px;
   left: auto;
-  z-index: 4;
+  z-index: 6;
   transform: rotate(3deg);
   border-radius: 999px;
   overflow: hidden;
@@ -304,9 +312,10 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .piece-morph:hover { transform: rotate(0deg) scale(1.06) !important; }
 
 .piece-tag {
-  width: 160px;
-  top: 0;
-  right: 0;
+  width: 150px;
+  top: 200px;
+  right: 10px;
+  left: auto;
   z-index: 2;
   transform: rotate(2deg);
   text-align: center;
@@ -314,9 +323,9 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 .piece-tag:hover { transform: rotate(0deg) translateY(-4px) !important; }
 
 .piece-quote {
-  width: 200px;
-  bottom: 0px;
-  right: 0px;
+  width: 180px;
+  bottom: 20px;
+  left: 30px;
   z-index: 5;
   transform: rotate(-1.5deg);
 }
@@ -343,15 +352,16 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(120,128,168,0.6);
   margin-bottom: 0.6rem;
 }
 .about-heading {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.2;
   margin-bottom: 0.8rem;
+  color: rgba(232,234,244,0.75);
 }
 .about-heading em {
   font-style: italic;
@@ -364,22 +374,22 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   font-size: 0.78rem;
   font-weight: 300;
   line-height: 1.85;
-  color: var(--muted);
+  color: rgba(120,128,168,0.6);
 }
 .piece-tag-inner {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 0.85rem;
   font-style: italic;
-  color: var(--muted);
+  color: rgba(120,128,168,0.6);
   line-height: 1.6;
   margin-top: 0.3rem;
 }
 .piece-quote-text {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 0.95rem;
   font-style: italic;
   font-weight: 300;
-  color: var(--muted);
+  color: rgba(120,128,168,0.6);
   line-height: 1.7;
 }
 
@@ -403,7 +413,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   margin-bottom: 0.5rem;
 }
 .works-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 2.8rem;
   font-weight: 300;
 }
@@ -469,7 +479,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   margin-bottom: 0.3rem;
 }
 .work-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.15rem;
   font-weight: 400;
   line-height: 1.2;
@@ -518,7 +528,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
 }
 .player-info { flex: 1; min-width: 0; }
 .player-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1rem;
   font-weight: 400;
   white-space: nowrap;
@@ -573,7 +583,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   background: rgba(255,255,255,0.05);
   border: 1px solid var(--border);
   border-radius: 999px;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -610,11 +620,11 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   margin: 0 auto 1.4rem;
 }
 .contact-heading {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
 }
 .contact-heading em {
   font-style: italic;
@@ -624,13 +634,13 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   background-clip: text;
 }
 .contact-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
   font-style: italic;
   font-weight: 300;
   color: var(--muted);
-  line-height: 1.75;
-  margin-bottom: 2.2rem;
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
 }
 .form { display: flex; flex-direction: column; gap: 0.9rem; text-align: left; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
@@ -647,7 +657,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0.75rem 0.95rem;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 0.82rem;
   color: var(--text);
   outline: none;
@@ -670,7 +680,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   color: #080c18;
   border: none;
   border-radius: 999px;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -695,7 +705,7 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   backdrop-filter: blur(16px);
 }
 .footer-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 0.9rem;
   font-weight: 300;
   letter-spacing: 0.06em;
@@ -1015,6 +1025,9 @@ export default function Portfolio() {
           <li>
             <a href="#contact">Contact</a>
           </li>
+          <li>
+            <a href="/notepad">Works</a>
+          </li>
         </ul>
       </nav>
 
@@ -1022,14 +1035,23 @@ export default function Portfolio() {
       <section className="hero" id="home" ref={heroRef}>
         <SectionStars />
 
-        {/* orb - top right corner of hero */}
-        <div className="piece piece-morph">
-          <div className="morph-shape" />
-        </div>
-
-        {/* hero layout - name left, collage cards right */}
+        {/* hero layout - collage left, name right */}
         <div className="hero-inner">
-          {/* centred name block */}
+          {/* collage pieces - LEFT */}
+          <div className="collage-board">
+            <div className="piece piece-morph">
+              <div className="morph-shape" />
+            </div>
+            <div className="piece piece-bio reveal">
+              <p className="about-label">About</p>
+              <h2 className="about-heading">
+                A writer of <em>words</em> that linger
+              </h2>
+              <p className="about-text">XXXX</p>
+            </div>
+          </div>
+
+          {/* name block - RIGHT / centre */}
           <div className="hero-top reveal">
             <div className="pill">
               <span className="pill-dot" /> Available for projects
@@ -1044,26 +1066,6 @@ export default function Portfolio() {
               <a href="#contact" className="btn-ghost">
                 Connect with me
               </a>
-            </div>
-          </div>
-
-          {/* collage pieces alongside the name */}
-          <div className="collage-board">
-            <div className="piece piece-bio reveal">
-              <p className="about-label">About</p>
-              <h2 className="about-heading">
-                A writer of <em>words</em> that linger
-              </h2>
-              <p className="about-text">XXXX</p>
-            </div>
-            <div className="piece piece-tag reveal">
-              <p className="about-label">Based in</p>
-              <p className="piece-tag-inner">
-                Aotearoa, New Zealand &mdash; available worldwide
-              </p>
-            </div>
-            <div className="piece piece-quote reveal">
-              <p className="piece-quote-text">"quote".</p>
             </div>
           </div>
         </div>
