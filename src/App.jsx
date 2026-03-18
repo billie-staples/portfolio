@@ -1026,7 +1026,7 @@ export default function Portfolio() {
             <a href="#contact">Contact</a>
           </li>
           <li>
-            <a href="/notepad">Works</a>
+            <a href="/notepad">Scriblings</a>
           </li>
         </ul>
       </nav>
