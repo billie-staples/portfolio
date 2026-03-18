@@ -1020,12 +1020,6 @@ export default function Portfolio() {
         </a>
         <ul className="nav-links">
           <li>
-            <a href="#works">Works</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-          <li>
             <a href="/notepad">Scriblings</a>
           </li>
         </ul>
