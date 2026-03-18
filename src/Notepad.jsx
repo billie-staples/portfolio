@@ -1,19 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
-</style>
+const CSS = `
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@300;400;500&display=swap');
 
-
-.roboto-mono-<uniquifier> 
-  font-family: "Roboto Mono", monospace;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body, #root {
   width: 100%;
@@ -120,7 +111,7 @@ html, body, #root {
 }
 
 .notepad-heading {
-  font-family: 'Roboto Mono', cursive;
+  font-family: 'Caveat', cursive;
   font-size: 1.9rem;
   font-weight: 500;
   color: #1a1a1a;
@@ -129,7 +120,7 @@ html, body, #root {
 }
 
 .notepad-date {
-  font-family: 'Roboto Mono', cursive;
+  font-family: 'Caveat', cursive;
   font-size: 0.88rem;
   font-weight: 300;
   color: #c8c8c8;
@@ -139,7 +130,7 @@ html, body, #root {
 }
 
 .text-area {
-  font-family: 'Roboto Mono', cursive;
+  font-family: 'Caveat', cursive;
   font-size: 1.15rem;
   font-weight: 300;
   color: #2a2a2a;
@@ -159,7 +150,7 @@ html, body, #root {
   position: fixed;
   bottom: 1.4rem;
   right: 1.8rem;
-  font-family: 'Roboto Mono', cursive;
+  font-family: 'Caveat', cursive;
   font-size: 0.8rem;
   color: #d0d0d0;
   letter-spacing: 0.1em;
@@ -200,7 +191,7 @@ export default function Notepad() {
         {/* Full page ruled area */}
         <div className="ruled">
           <div className="notepad-inner">
-            <div className="notepad-heading">Poem: I wanted to </div>
+            <div className="notepad-heading">Billie Staples</div>
             <div className="notepad-date">— your text below —</div>
             <div className="text-area">
               <span className="text-placeholder">Your text goes here...</span>
