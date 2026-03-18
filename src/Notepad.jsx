@@ -200,7 +200,7 @@ export default function Notepad() {
         {/* Full page ruled area */}
         <div className="ruled">
           <div className="notepad-inner">
-            <div className="notepad-heading">Billie Staples</div>
+            <div className="notepad-heading">Poem: I wanted to </div>
             <div className="notepad-date">— your text below —</div>
             <div className="text-area">
               <span className="text-placeholder">Your text goes here...</span>
