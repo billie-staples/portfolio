@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom'
 </style>
 
 
-.roboto-mono-<uniquifier> {
+.roboto-mono-<uniquifier> 
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
   font-weight: <weight>;
   font-style: normal;
-}
+
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
