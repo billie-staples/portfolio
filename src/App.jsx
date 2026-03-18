@@ -737,6 +737,139 @@ section { position: relative; z-index: 1; width: 100%; display: flex; flex-direc
   50%      { opacity: 0.12; transform: scale(0.4); }
 }
 
+/* STAGE OVERLAY */
+.stage-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.35s ease;
+  pointer-events: none;
+}
+.stage-overlay.open {
+  background: rgba(4,6,16,0.75);
+  pointer-events: all;
+}
+.stage {
+  width: 92%;
+  max-width: 800px;
+  max-height: 88vh;
+  background: rgba(12,18,36,0.97);
+  border: 1px solid rgba(180,200,255,0.12);
+  border-radius: 20px;
+  box-shadow: 0 32px 100px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.88) translateY(40px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
+  backdrop-filter: blur(24px);
+}
+.stage-overlay.open .stage {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+.stage-header {
+  padding: 1.6rem 1.8rem 1.2rem;
+  border-bottom: 1px solid rgba(180,200,255,0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.stage-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+}
+.stage-cat {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+.stage-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(180,200,255,0.15);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s, color 0.2s;
+}
+.stage-close:hover { border-color: var(--i1); color: var(--text); }
+.stage-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 1.6rem 1.8rem 2.4rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180,200,255,0.15) transparent;
+}
+.stage-body::-webkit-scrollbar { width: 4px; }
+.stage-body::-webkit-scrollbar-thumb { background: rgba(180,200,255,0.15); border-radius: 999px; }
+.gallery {
+  display: flex;
+  gap: 0.8rem;
+  overflow-x: auto;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180,200,255,0.1) transparent;
+}
+.gallery::-webkit-scrollbar { height: 3px; }
+.gallery::-webkit-scrollbar-thumb { background: rgba(180,200,255,0.1); border-radius: 999px; }
+.gallery-img {
+  width: 240px;
+  height: 170px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(180,200,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.gallery-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-placeholder {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(180,200,255,0.2);
+  text-align: center;
+}
+.stage-desc {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+.stage-meta {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(180,200,255,0.25);
+}
+.work-piece { cursor: pointer; }
 `
 
 const WORKS = [
@@ -745,24 +878,28 @@ const WORKS = [
     cat: 'Theatre',
     title: 'Bravado',
     desc: 'Description, quote, review.',
+    images: [],
   },
   {
     id: 'wc2',
     cat: 'Theatre',
     title: 'When the world was wide',
     desc: 'Description, quote, review',
+    images: [],
   },
   {
     id: 'wc3',
     cat: 'Theatre',
     title: 'Pig, pig, pig (consent) none of that please',
     desc: 'Description, quote, review',
+    images: [],
   },
   {
     id: 'wc4',
     cat: 'Theatre',
     title: 'You First',
     desc: 'Description, quote, review.',
+    images: [],
   },
 ]
 
@@ -977,9 +1114,55 @@ function useReveal() {
   }, [])
 }
 
-function WorkCard({ id, cat, title, desc }) {
+function Stage({ work, onClose }) {
+  const isOpen = !!work
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
   return (
-    <div className={'work-piece ' + id}>
+    <div className={`stage-overlay${isOpen ? ' open' : ''}`} onClick={onClose}>
+      {work && (
+        <div className="stage" onClick={(e) => e.stopPropagation()}>
+          <div className="stage-header">
+            <div>
+              <div className="stage-title">{work.title}</div>
+              <div className="stage-cat">{work.cat}</div>
+            </div>
+            <button className="stage-close" onClick={onClose}>
+              &#x2715;
+            </button>
+          </div>
+          <div className="stage-body">
+            <div className="gallery">
+              {work.images && work.images.length > 0
+                ? work.images.map((src, i) => (
+                    <div key={i} className="gallery-img">
+                      <img src={src} alt={`${work.title} ${i + 1}`} />
+                    </div>
+                  ))
+                : Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="gallery-img">
+                      <span className="gallery-placeholder">image {i + 1}</span>
+                    </div>
+                  ))}
+            </div>
+            <div className="stage-desc">{work.desc}</div>
+            <div className="stage-meta">{work.cat}</div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function WorkCard({ id, cat, title, desc, onClick }) {
+  return (
+    <div className={'work-piece ' + id} onClick={onClick}>
       <div className="work-thumb">
         <div className="work-thumb-inner">
           <div className="work-orb wo-a" />
@@ -1000,6 +1183,7 @@ export default function Portfolio() {
   const heroRef = useRef(null)
   const worksRef = useRef(null)
   const contactRef = useRef(null)
+  const [activeWork, setActiveWork] = useState(null)
 
   return (
     <>
@@ -1020,7 +1204,10 @@ export default function Portfolio() {
         </a>
         <ul className="nav-links">
           <li>
-            <a href="/notepad">Scriblings</a>
+            <a href="#works">Works</a>
+          </li>
+          <li>
+            <a href="#contact">Contact</a>
           </li>
         </ul>
       </nav>
@@ -1085,7 +1272,7 @@ export default function Portfolio() {
           style={{ position: 'relative', zIndex: 1 }}
         >
           {WORKS.map((w) => (
-            <WorkCard key={w.id} {...w} />
+            <WorkCard key={w.id} {...w} onClick={() => setActiveWork(w)} />
           ))}
         </div>
       </section>
@@ -1166,6 +1353,8 @@ export default function Portfolio() {
         <span className="footer-name">Billie Staples &mdash; Writer</span>
         <span className="footer-copy">&copy; 2026. All rights reserved.</span>
       </footer>
+
+      <Stage work={activeWork} onClose={() => setActiveWork(null)} />
     </>
   )
 }
