@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -111,7 +111,7 @@ html, body, #root {
 }
 
 .notepad-heading {
-  font-family: 'Caveat', cursive;
+  font-family: 'Roboto Mono', cursive;
   font-size: 1.9rem;
   font-weight: 500;
   color: #1a1a1a;
@@ -120,7 +120,7 @@ html, body, #root {
 }
 
 .notepad-date {
-  font-family: 'Caveat', cursive;
+  font-family: 'Roboto Mono', cursive;
   font-size: 0.88rem;
   font-weight: 300;
   color: #c8c8c8;
@@ -130,7 +130,7 @@ html, body, #root {
 }
 
 .text-area {
-  font-family: 'Caveat', cursive;
+  font-family: 'Roboto Mono', cursive;
   font-size: 1.15rem;
   font-weight: 300;
   color: #2a2a2a;
@@ -150,7 +150,7 @@ html, body, #root {
   position: fixed;
   bottom: 1.4rem;
   right: 1.8rem;
-  font-family: 'Caveat', cursive;
+  font-family: 'Roboto Mono', cursive;
   font-size: 0.8rem;
   color: #d0d0d0;
   letter-spacing: 0.1em;
